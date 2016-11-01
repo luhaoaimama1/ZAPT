@@ -1,0 +1,126 @@
+---------------count:1------------------
+------------ start:ZField------------------------
+packageName:zone.com.annotationstudy
+element:bt_annotation
+element_getModifiers:[public]
+VariableElement---getEnclosingElement:zone.com.annotationstudy.MainActivity
+类型是:VariableElement
+kind类型:FIELD
+EnclosedElements:
+element.asType():android.view.View
+-------------end-----------------------
+
+
+------------ start:ZField------------------------
+packageName:zone.com.annotationstudy
+element:bt_processor
+element_getModifiers:[]
+VariableElement---getEnclosingElement:zone.com.annotationstudy.MainActivity
+类型是:VariableElement
+kind类型:FIELD
+EnclosedElements:
+element.asType():android.view.View
+-------------end-----------------------
+
+
+------------ start:ZField------------------------
+packageName:zone.com.annotationstudy
+element:kb
+element_getModifiers:[final]
+VariableElement---getEnclosingElement:zone.com.annotationstudy.MainActivity
+类型是:VariableElement
+fieldValue:3
+kind类型:FIELD
+EnclosedElements:
+element.asType():int
+-------------end-----------------------
+
+
+------------ start:ZField------------------------
+packageName:zone.com.annotationstudy
+element:bt_annotation
+element_getModifiers:[]
+VariableElement---getEnclosingElement:zone.com.annotationstudy.TestMuplActivity
+类型是:VariableElement
+kind类型:FIELD
+EnclosedElements:
+element.asType():android.view.View
+-------------end-----------------------
+
+
+------------ start:ZField------------------------
+packageName:zone.com.annotationstudy
+element:bt_processor
+element_getModifiers:[]
+VariableElement---getEnclosingElement:zone.com.annotationstudy.TestMuplActivity
+类型是:VariableElement
+kind类型:FIELD
+EnclosedElements:
+element.asType():android.view.View
+-------------end-----------------------
+
+
+------------ start:ZMethod------------------------
+packageName:zone.com.annotationstudy
+element:onClick(android.view.View,int)
+element_getModifiers:[public]
+methodName:--->onClick
+method return type:--->void
+parName:v	 parType:android.view.View
+parName:var2	 parType:int
+kind类型:METHOD
+EnclosedElements:
+element.asType():(android.view.View,int)void
+-------------end-----------------------
+
+
+------------ start:ZMethod------------------------
+packageName:zone.com.annotationstudy
+element:onClick(android.view.View)
+element_getModifiers:[public]
+methodName:--->onClick
+method return type:--->int
+parName:v	 parType:android.view.View
+kind类型:METHOD
+EnclosedElements:
+element.asType():(android.view.View)int
+-------------end-----------------------
+
+
+------------ start:ZClass------------------------
+packageName:zone.com.annotationstudy
+element:zone.com.annotationstudy.Test
+element_getModifiers:[public]
+superClass--->java.lang.Object
+superClass--->java.lang.Object
+a--->zone.com.annotationstudy.Test
+kind类型:CLASS
+EnclosedElements:Test()
+child:Test()	 kind->CONSTRUCTOR
+element.asType():zone.com.annotationstudy.Test
+-------------end-----------------------
+
+
+------------ start:ZClass------------------------
+packageName:zone.com.annotationstudy
+element:zone.com.annotationstudy.TestMuplActivity
+element_getModifiers:[public]
+superClass--->android.support.v7.app.AppCompatActivity
+inter 接口--->zone.com.annotationstudy.CallbakTest
+superClass--->android.support.v7.app.AppCompatActivity
+a--->zone.com.annotationstudy.TestMuplActivity
+kind类型:CLASS
+EnclosedElements:TestMuplActivity(),bt_annotation,bt_processor,onCreate(android.os.Bundle),onClick(android.view.View),heihei()
+child:TestMuplActivity()	 kind->CONSTRUCTOR
+child:bt_annotation	 kind->FIELD
+child:bt_processor	 kind->FIELD
+child:onCreate(android.os.Bundle)	 kind->METHOD
+child:onClick(android.view.View)	 kind->METHOD
+child:heihei()	 kind->METHOD
+element.asType():zone.com.annotationstudy.TestMuplActivity
+-------------end-----------------------
+
+
+
+---------------count:2------------------
+
