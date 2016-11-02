@@ -220,11 +220,8 @@ try {
                 + SUFFIX;
         if (classType!=null&&!generateCache.contains(generateValue)) {
             JavaFileObject jfo = mElementCheckHelper.getFiler()
-                    //第一个参数是类名；
-                    .createSourceFile(generateValue,
-//                                   );
-                            //发现第二个参暂时有没有都一样
-                     classEntity.getValue().getElement());
+                    .createSourceFile(generateValue,  //第一个参数是类名；
+                     classEntity.getValue().getElement());     //发现第二个参暂时有没有都一样
             Writer writer = jfo.openWriter();
             writer.write(JavaGenerate.brewJava(classEntity.getValue()));
             writer.flush();
