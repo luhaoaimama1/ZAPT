@@ -1,9 +1,14 @@
 #知识总结
+#### [环境搭建](./README-cn.md)
+
 ###使用注意:
 1：修改log地址 不然会报错； 每次build可观察 apt项目下的process.txt文件；
 修改地址是：apt项目下 utils LogUtils.fileAddress这个属性；
 
-2：还有不知道为什么  不能用gson去转化实体类，不然会各种报错；
+2:每次需要rebuild项目！！！
+
+3：还有不知道为什么  不能用gson去转化实体类，不然会各种报错；
+
 ###初始化里的东西
 ```
 messager:用来打印信息；注意：如果Diagnostic.Kind.ERROR的话build会失败；
