@@ -28,6 +28,9 @@ sor的代码（包括FactoryAnnotatedClass和FactoryGroupedClasses）到他们�
 
 # Reference&Thanks：
 https://lizhaoxuan.github.io/
+
 http://www.race604.com/annotation-processing/
+
 https://segmentfault.com/a/1190000002785541
+
 http://blog.csdn.net/lmj623565791/article/details/51931859
