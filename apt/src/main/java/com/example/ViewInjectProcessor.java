@@ -24,9 +24,8 @@ import javax.tools.JavaFileObject;
 
 @AutoService(Processor.class)
 public class ViewInjectProcessor extends AbstractProcessor {
-    public static final String SUFFIX = "$$Injector";
-//    public static final String SUFFIX = "$$ViewBinder";
-    public int count = 1;
+    public static final String SUFFIX = ElementCheckHelper.SUFFIX+"Injector";
+//    public static final String SUFFIX =  ElementCheckHelper.SUFFIX+"ViewBinder";
     private Class<? extends Annotation>[] supports = new Class[]{
             ZField.class,
             ZMethod.class,
@@ -44,27 +43,18 @@ public class ViewInjectProcessor extends AbstractProcessor {
     @Override
     public boolean process(Set<? extends TypeElement> annotations,
                            RoundEnvironment env) {
-        StringBuilder sb = new StringBuilder();
-
         for (Class<? extends Annotation> support : supports)
             mElementCheckHelper.resolve(env, support);
+
         for (Map.Entry<String, ClassEntity> classEntity : mElementCheckHelper.getClassEntityMap().entrySet()) {
-            sb.append("-------------类：" + classEntity.getKey() + "----------------\n");
-            sb.append(classEntity.getValue() + "\n");
-            sb.append("\n");
             try {
                 TypeElement classType = classEntity.getValue().getElement();
                 //代表最后生成的类名
-                String generateValue = classEntity.getValue().getClassName()
-                        + SUFFIX;
-
+                String generateValue = classEntity.getValue().getClassName()+ SUFFIX;
                 if (classType!=null&&!generateCache.contains(generateValue)) {
                     JavaFileObject jfo = mElementCheckHelper.getFiler()
-                            //第一个参数是类名；
-                            .createSourceFile(generateValue,
-//                                   );
-                                    //发现第二个参暂时有没有都一样
-                             classEntity.getValue().getElement());
+                            .createSourceFile(generateValue,//第一个参数是类名；
+                             classEntity.getValue().getElement()); //发现第二个参暂时有没有都一样
                     Writer writer = jfo.openWriter();
                     writer.write(JavaGenerate.brewJava(classEntity.getValue()));
                     writer.flush();
@@ -75,8 +65,7 @@ public class ViewInjectProcessor extends AbstractProcessor {
                 processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR, e.getMessage());
             }
         }
-        LogUtils.writeLog(sb.toString(), count);
-        count++;
+        mElementCheckHelper.printLog();
         return true;
     }
 

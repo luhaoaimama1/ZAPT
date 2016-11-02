@@ -3,6 +3,8 @@ package com.example.entity.helper;
 import com.example.entity.ClassEntity;
 import com.example.entity.FieldEntity;
 import com.example.entity.MethodEntity;
+import com.example.utils.LogUtils;
+
 import java.lang.annotation.Annotation;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,8 +31,7 @@ public class ElementCheckHelper {
     private Types typeUtils;
     private Messager messager;
     private Map<String, ClassEntity> classEntityMap;
-
-    private static final String SUFFIX = "$$";
+    public static final String SUFFIX = "$$";
 
 
     public ElementCheckHelper(ProcessingEnvironment env) {
@@ -98,6 +99,18 @@ public class ElementCheckHelper {
                 } else break;
             }
         }
+    }
+
+    public int count = 1;
+    public void  printLog(){
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry<String, ClassEntity> classEntity : this.getClassEntityMap().entrySet()) {
+            sb.append("-------------类：" + classEntity.getKey() + "----------------\n");
+            sb.append(classEntity.getValue() + "\n");
+            sb.append("\n");
+        }
+        LogUtils.writeLog(sb.toString(), count);
+        count++;
     }
 
     private boolean checkClassNeedResolve(String className) {
