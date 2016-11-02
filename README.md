@@ -1,9 +1,14 @@
 #知识总结
+###使用注意:
+1：修改log地址 不然会报错； 每次build可观察 apt项目下的process.txt文件；
+修改地址是：apt项目下 utils LogUtils.fileAddress这个属性；
+
+2：还有不知道为什么  不能用gson去转化实体类，不然会各种报错；
 ###初始化里的东西
 ```
 messager:用来打印信息；注意：如果Diagnostic.Kind.ERROR的话build会失败；
 
-filer:
+filer:文件写入  放到文章最后；
 
 elementUtils:获取包名的；等信息；
 
@@ -195,3 +200,35 @@ parName:v	 parType:android.view.View
 parName:var2	 parType:int
 ```
 
+### Filter与JavaFileObject
+//生成在某个包下 是和 你生成的类的package有关！
+filter.createSourceFile(arg1,arg2)的返回值是JavaFileObject;
+arg1:代表 最后要成的文件类名，一般是"原类名+你要生成的后缀"
+arg2:是element,暂时是写和不写结果一样,如果有谁知道请告诉我~;
+
+
+```
+try {
+        TypeElement classType = classEntity.getValue().getElement();
+        //代表最后生成的类名
+        String generateValue = classEntity.getValue().getClassName()
+                + SUFFIX;
+        if (classType!=null&&!generateCache.contains(generateValue)) {
+            JavaFileObject jfo = mElementCheckHelper.getFiler()
+                    //第一个参数是类名；
+                    .createSourceFile(generateValue,
+//                                   );
+                            //发现第二个参暂时有没有都一样
+                     classEntity.getValue().getElement());
+            Writer writer = jfo.openWriter();
+            writer.write(JavaGenerate.brewJava(classEntity.getValue()));
+            writer.flush();
+            writer.close();
+            generateCache.add(generateValue);
+        }
+    } catch (Exception e) {
+        processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR, e.getMessage());
+    }
+```
+#####注意:生成的类不能生成第二次 覆盖他不可以的；会报错，所以需要建立一个list存这个生成类的名字；
+#####每次生成的时候检查 是否包含他；

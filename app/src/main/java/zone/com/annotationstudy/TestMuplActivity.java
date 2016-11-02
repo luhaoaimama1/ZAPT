@@ -4,11 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-
 import com.example.ZClass;
 import com.example.ZField;
 import com.example.ZMethod;
-
 import zone.com.annotationstudy.annotation.ZOnclick;
 @ZClass("MTestMuplActivity____")
 public class TestMuplActivity extends AppCompatActivity implements CallbakTest {
