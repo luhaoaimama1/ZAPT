@@ -7,9 +7,10 @@ import android.view.View;
 import com.example.ZClass;
 import com.example.ZField;
 import com.example.ZMethod;
-import zone.com.annotationstudy.annotation.ZOnclick;
+
+//主要是实现了接口和原来不一样了用来分辨数据用的
 @ZClass("MTestMuplActivity____")
-public class TestMuplActivity extends AppCompatActivity implements CallbakTest {
+public class TestMuplActivity extends AppCompatActivity implements Interface1 {
 
     @ZField(R.id.bt_annotation)
     View bt_annotation;
@@ -23,8 +24,6 @@ public class TestMuplActivity extends AppCompatActivity implements CallbakTest {
         setContentView(R.layout.activity_main2);
 //        ButterKnife.bind(this);
     }
-
-
     @ZMethod({R.id.bt_annotation,R.id.bt_processor})
     public int onClick(View v) {
         switch (v.getId()) {
@@ -37,7 +36,6 @@ public class TestMuplActivity extends AppCompatActivity implements CallbakTest {
         }
         return 0;
     }
-
     @Override
     public void heihei() {
 

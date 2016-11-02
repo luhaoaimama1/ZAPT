@@ -82,7 +82,7 @@ Methodkey:onClick	MethodValue:
 
 AnnotationKey:com.example.ZClass	AnnotationValue:@com.example.ZClass(value=MTestMuplActivity____)
 
-interfaces__index:0:zone.com.annotationstudy.CallbakTest
+interfaces__index:0:zone.com.annotationstudy.Interface1
 }
 
 
@@ -170,7 +170,7 @@ Methodkey:onClick	MethodValue:
 
 AnnotationKey:com.example.ZClass	AnnotationValue:@com.example.ZClass(value=MTestMuplActivity____)
 
-interfaces__index:0:zone.com.annotationstudy.CallbakTest
+interfaces__index:0:zone.com.annotationstudy.Interface1
 }
 
 
@@ -258,7 +258,7 @@ Methodkey:onClick	MethodValue:
 
 AnnotationKey:com.example.ZClass	AnnotationValue:@com.example.ZClass(value=MTestMuplActivity____)
 
-interfaces__index:0:zone.com.annotationstudy.CallbakTest
+interfaces__index:0:zone.com.annotationstudy.Interface1
 }
 
 
