@@ -8,8 +8,8 @@ dependencies {
     compile 'com.google.auto.service:auto-service:1.0-rc2'
 }
 
-sourceCompatibility = "1.8"
-targetCompatibility = "1.8"
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
 
 task sourcesJar(type: Jar, dependsOn: classes) {
     classifier = 'sources'
