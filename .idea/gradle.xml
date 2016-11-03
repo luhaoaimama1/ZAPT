@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/annotation" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/apt" />
+            <option value="$PROJECT_DIR$/aptlib" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

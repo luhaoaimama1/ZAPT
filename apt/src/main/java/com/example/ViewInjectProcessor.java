@@ -1,86 +1,48 @@
 package com.example;
-
 import com.example.entity.ClassEntity;
-import com.example.entity.helper.ElementCheckHelper;
-import com.example.utils.LogUtils;
 import com.google.auto.service.AutoService;
-
-import java.io.Writer;
 import java.lang.annotation.Annotation;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import javax.annotation.processing.AbstractProcessor;
-import javax.annotation.processing.ProcessingEnvironment;
 import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
-import javax.lang.model.SourceVersion;
 import javax.lang.model.element.TypeElement;
 import javax.tools.Diagnostic;
-import javax.tools.JavaFileObject;
 
 @AutoService(Processor.class)
-public class ViewInjectProcessor extends AbstractProcessor {
-    public static final String SUFFIX = ElementCheckHelper.SUFFIX+"Injector";
-//    public static final String SUFFIX =  ElementCheckHelper.SUFFIX+"ViewBinder";
+public class ViewInjectProcessor extends AbstractProcessorAPT {
+    public static final String SUFFIX = ElementResolver.GENERATE_LABEL +"Injector";
+//    public static final String GENERATE_LABEL =  ElementResolver.GENERATE_LABEL+"ViewBinder";
     private Class<? extends Annotation>[] supports = new Class[]{
             ZField.class,
             ZMethod.class,
             ZClass.class
     };
-    private ElementCheckHelper mElementCheckHelper;
-    private List<String> generateCache=new ArrayList<>();
-
-    @Override
-    public synchronized void init(ProcessingEnvironment env) {
-        super.init(env);
-        mElementCheckHelper = new ElementCheckHelper(env);
-    }
 
     @Override
     public boolean process(Set<? extends TypeElement> annotations,
                            RoundEnvironment env) {
+        //解析成实体类
         for (Class<? extends Annotation> support : supports)
-            mElementCheckHelper.resolve(env, support);
-
-        for (Map.Entry<String, ClassEntity> classEntity : mElementCheckHelper.getClassEntityMap().entrySet()) {
+            mElementResolver.resolve(env, support);
+        //文件写入
+        for (Map.Entry<String, ClassEntity> item : mElementResolver.getClassEntityMap().entrySet()) {
             try {
-                TypeElement classType = classEntity.getValue().getElement();
-                //代表最后生成的类名
-                String generateValue = classEntity.getValue().getClassName()+ SUFFIX;
-                if (classType!=null&&!generateCache.contains(generateValue)) {
-                    JavaFileObject jfo = mElementCheckHelper.getFiler()
-                            .createSourceFile(generateValue,//第一个参数是类名；
-                             classEntity.getValue().getElement()); //发现第二个参暂时有没有都一样
-                    Writer writer = jfo.openWriter();
-                    writer.write(JavaGenerate.brewJava(classEntity.getValue()));
-                    writer.flush();
-                    writer.close();
-                    generateCache.add(generateValue);
-                }
+                JavaFileUtils.write(mElementResolver, item.getValue()
+                ,SUFFIX,JavaGenerate.brewJava(item.getValue()));
             } catch (Exception e) {
-                processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR, e.getMessage());
+                mElementResolver.getMessager()
+                        .printMessage(Diagnostic.Kind.ERROR, e.getMessage());
             }
         }
-        mElementCheckHelper.printLog();
+        //log打印；
+        mElementResolver.printLog();
         return true;
     }
 
-    @Override
-    public Set<String> getSupportedAnnotationTypes() {
-        Set<String> types = new LinkedHashSet<>();
-        for (Class support : supports)
-            types.add(support.getCanonicalName());
-        return types;
-    }
 
     @Override
-    public SourceVersion getSupportedSourceVersion() {
-        return SourceVersion.latestSupported();
+    public Class<? extends Annotation>[] getSupportedAnnotationClasses() {
+        return supports;
     }
-
-
 }

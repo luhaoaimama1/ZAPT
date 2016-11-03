@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 //        ButterKnife.bind(this);
         //不报错代表我成功了~
-        new MainActivity$$Injector<MainActivity>().bind(this);
+//        new MainActivity$$Injector<MainActivity>().bind(this);
     }
 
 

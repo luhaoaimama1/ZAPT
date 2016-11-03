@@ -6,11 +6,8 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.1'
-
         // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
-        //替换成最新android-apt版本
-//        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
     }
 }
 
@@ -20,7 +17,6 @@ allprojects {
         maven { url "https://jitpack.io" }
     }
 }
-
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

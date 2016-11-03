@@ -1,9 +1,8 @@
-package com.example.entity.helper;
+package com.example;
 
 import com.example.entity.ClassEntity;
 import com.example.entity.FieldEntity;
 import com.example.entity.MethodEntity;
-import com.example.utils.LogUtils;
 
 import java.lang.annotation.Annotation;
 import java.util.HashMap;
@@ -24,17 +23,17 @@ import javax.lang.model.util.Types;
  * Created by fuzhipeng on 2016/11/2.
  */
 
-public class ElementCheckHelper {
+public class ElementResolver {
     private ProcessingEnvironment env;
     private Filer filer;
     private Elements elementUtils;
     private Types typeUtils;
     private Messager messager;
     private Map<String, ClassEntity> classEntityMap;
-    public static final String SUFFIX = "$$";
+    public static final String GENERATE_LABEL = "$$";
 
 
-    public ElementCheckHelper(ProcessingEnvironment env) {
+    public ElementResolver(ProcessingEnvironment env) {
         this.env = env;
         filer = env.getFiler();
         elementUtils = env.getElementUtils();
@@ -109,12 +108,12 @@ public class ElementCheckHelper {
             sb.append(classEntity.getValue() + "\n");
             sb.append("\n");
         }
-        LogUtils.writeLog(sb.toString(), count);
+        LogConfig.writeLog(messager,sb.toString(), count);
         count++;
     }
 
     private boolean checkClassNeedResolve(String className) {
-        return !className.contains(SUFFIX);
+        return !className.contains(GENERATE_LABEL);
     }
 
     public ProcessingEnvironment getEnv() {

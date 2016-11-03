@@ -1,4 +1,4 @@
----------------count:1------------------
+---------------process count:1------------------
 -------------类：zone.com.annotationstudy.Test----------------
 {
 classPackage:zone.com.annotationstudy
@@ -86,7 +86,7 @@ interfaces__index:0:zone.com.annotationstudy.Interface1
 }
 
 
----------------count:2------------------
+---------------process count:2------------------
 -------------类：zone.com.annotationstudy.Test----------------
 {
 classPackage:zone.com.annotationstudy
@@ -174,7 +174,7 @@ interfaces__index:0:zone.com.annotationstudy.Interface1
 }
 
 
----------------count:3------------------
+---------------process count:3------------------
 -------------类：zone.com.annotationstudy.Test----------------
 {
 classPackage:zone.com.annotationstudy
