@@ -2,8 +2,8 @@ apply plugin: 'java'
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':annotation')
-    compile project(':aptlib')
-//    compile 'com.github.luhaoaimama1:AnnotationStudy:1.0.4'
+//    compile project(':aptlib')
+    compile 'com.github.luhaoaimama1:AnnotationStudy:1.0.5'
 }
 sourceCompatibility = "1.7"
 targetCompatibility = "1.7"
