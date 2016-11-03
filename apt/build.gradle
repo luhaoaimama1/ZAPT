@@ -3,7 +3,7 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':annotation')
 //    compile project(':aptlib')
-    compile 'com.github.luhaoaimama1:AnnotationStudy:1.0.0'
+    compile 'com.github.luhaoaimama1:AnnotationStudy:1.0.1'
 }
 sourceCompatibility = "1.8"
 targetCompatibility = "1.8"
