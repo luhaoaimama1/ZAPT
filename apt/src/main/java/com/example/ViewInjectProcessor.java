@@ -18,7 +18,7 @@ public class ViewInjectProcessor extends AbstractProcessorAPT {
             ZMethod.class,
             ZClass.class
     };
-
+    @Override
     public boolean process(Set<? extends TypeElement> annotations,
                            RoundEnvironment env) {
         //解析成实体类
