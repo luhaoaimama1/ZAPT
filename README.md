@@ -1,5 +1,13 @@
+#新手学习
+
+http://www.race604.com/annotation-processing/
+
+https://lizhaoxuan.github.io/
+
+#[环境搭建](./README-cn.md)
+点击标题即可跳转~
+
 #知识总结
-#### [环境搭建](./README-cn.md)
 
 ###使用注意:
 1：修改log地址 不然会报错； 每次build可观察 apt项目下的process.txt文件；
