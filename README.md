@@ -12,6 +12,8 @@ https://lizhaoxuan.github.io/
 ###使用注意:
 1：修改log地址 不然会报错； 每次build可观察 apt项目下的process.txt文件；
 修改地址是：apt项目下 utils LogUtils.fileAddress这个属性；
+#####如图所示~  显示了收集的信息；
+![](./demo/log.png)
 
 2:每次需要rebuild项目！！！
 
