@@ -7,7 +7,8 @@ https://lizhaoxuan.github.io/
 #[环境搭建](./README-cn.md)
 点击标题即可跳转~
 #项目已封装
-导入aptlib既可   因为有些原因没办法发布到jitpack 。。。。
+导入aptlib module 既可(如果编译成jar 引入则会各种报红 找不到类~) 
+  因为有些原因没办法发布到jitpack 。。。。
 
 #知识总结
 
