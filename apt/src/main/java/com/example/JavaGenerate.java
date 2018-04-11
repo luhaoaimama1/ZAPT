@@ -50,7 +50,7 @@ public class JavaGenerate {
         sb.append("package " + classEntity.getClassPackage() + ";\n");
         sb.append("import com.example.ZBinder;\n");
         sb.append("import android.view.View;\n");
-        sb.append(" public class "+classEntity.getClassSimpleName()+ViewInjectProcessor.SUFFIX
+        sb.append(" public class "+classEntity.getAPTClassName()
                 +"<T extends " +classEntity.getClassName()+"> implements ZBinder<T>{ \n");
         sb.append(" @Override public void bind(final T target) {\n");
         for (Map.Entry<String, FieldEntity> itemField : classEntity.getFields().entrySet()) {

@@ -20,56 +20,58 @@ import javax.lang.model.util.Types;
  */
 
 public class ClassEntity {
-    private  Name classSimpleName;
-    private Map<Class<? extends Annotation>,Annotation> annotataionMap= new HashMap<>();
+    private String APTClassName;
+    private Name classSimpleName;
+    private Map<Class<? extends Annotation>, Annotation> annotataionMap = new HashMap<>();
     private String classPackage;
     private Set<Modifier> modifierSet;
     private String className;
     //判断是否Null如果不是则有父类
     private String superclass;
     //没有接口 则长度为0；
-    private List<String> interfaces= new ArrayList<>();
-    private Map<String,FieldEntity> fields= new HashMap<>();
-    private Map<String,MethodEntity> methods= new HashMap<>();
-    private  WeakReference<TypeElement> elementWeakCache;
+    private List<String> interfaces = new ArrayList<>();
+    private Map<String, FieldEntity> fields = new HashMap<>();
+    private Map<String, MethodEntity> methods = new HashMap<>();
+    private WeakReference<TypeElement> elementWeakCache;
+
     @Override
     public String toString() {
-        StringBuilder fieldString=new StringBuilder();
-        StringBuilder methodString=new StringBuilder();
-        StringBuilder interfacesString=new StringBuilder();
-        StringBuilder annotataionMapString=new StringBuilder();
+        StringBuilder fieldString = new StringBuilder();
+        StringBuilder methodString = new StringBuilder();
+        StringBuilder interfacesString = new StringBuilder();
+        StringBuilder annotataionMapString = new StringBuilder();
         for (Map.Entry<String, FieldEntity> item : fields.entrySet()) {
-            fieldString.append("FieldKey:"+ item.getKey()+
-                    "\tFieldValue:\n"+ item.getValue().toString()+"\n");
+            fieldString.append("FieldKey:" + item.getKey() +
+                    "\tFieldValue:\n" + item.getValue().toString() + "\n");
         }
         for (Map.Entry<String, MethodEntity> item : methods.entrySet()) {
-            methodString.append("Methodkey:"+ item.getKey()+
-                    "\tMethodValue:\n"+ item.getValue().toString()+"\n");
+            methodString.append("Methodkey:" + item.getKey() +
+                    "\tMethodValue:\n" + item.getValue().toString() + "\n");
         }
-        for (Map.Entry<Class<? extends Annotation>,Annotation> item : annotataionMap.entrySet()) {
-            annotataionMapString.append("AnnotationKey:"+ item.getKey().getCanonicalName()+
-                    "\tAnnotationValue:"+ item.getValue().toString()+"\n");
+        for (Map.Entry<Class<? extends Annotation>, Annotation> item : annotataionMap.entrySet()) {
+            annotataionMapString.append("AnnotationKey:" + item.getKey().getCanonicalName() +
+                    "\tAnnotationValue:" + item.getValue().toString() + "\n");
         }
         for (int i = 0; i < interfaces.size(); i++) {
-            interfacesString.append("interfaces__index:"+i+":"+interfaces.get(i));
+            interfacesString.append("interfaces__index:" + i + ":" + interfaces.get(i));
         }
-        StringBuilder result=new StringBuilder();
+        StringBuilder result = new StringBuilder();
         result.append("{\n" +
-                "classPackage:"+classPackage+"\n"+
-                "modifierSet:"+modifierSet+"\n"+
-                "className:"+className+"\n"+
-                "classSimpleName:"+classSimpleName+"\n"+
-                "superclass:"+superclass+"\n"+
-                fieldString.toString()+"\n"+
-                methodString.toString()+"\n"+
-                annotataionMapString.toString()+"\n"+
-                interfacesString.toString()+"\n"+
+                "classPackage:" + classPackage + "\n" +
+                "modifierSet:" + modifierSet + "\n" +
+                "className:" + className + "\n" +
+                "classSimpleName:" + classSimpleName + "\n" +
+                "superclass:" + superclass + "\n" +
+                fieldString.toString() + "\n" +
+                methodString.toString() + "\n" +
+                annotataionMapString.toString() + "\n" +
+                interfacesString.toString() + "\n" +
                 "}");
         return result.toString();
     }
 
     public ClassEntity(Elements elementUtils, Types typeUtils, TypeElement element) {
-        elementWeakCache=new WeakReference<TypeElement>(element);
+        elementWeakCache = new WeakReference<TypeElement>(element);
         this.classPackage = elementUtils.getPackageOf(element).getQualifiedName().toString();
         this.modifierSet = element.getModifiers();
         this.className = element.toString();
@@ -154,5 +156,13 @@ public class ClassEntity {
 
     public Name getClassSimpleName() {
         return classSimpleName;
+    }
+
+    public String getAPTClassName() {
+        return APTClassName;
+    }
+
+    public void setAPTClassName(String APTClassName) {
+        this.APTClassName = APTClassName;
     }
 }

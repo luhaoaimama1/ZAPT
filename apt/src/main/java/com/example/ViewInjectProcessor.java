@@ -27,8 +27,9 @@ public class ViewInjectProcessor extends AbstractProcessorAPT {
         //文件写入
         for (Map.Entry<String, ClassEntity> item : mElementResolver.getClassEntityMap().entrySet()) {
             try {
-                JavaFileUtils.write(mElementResolver, item.getValue()
-                ,SUFFIX,JavaGenerate.brewJava(item.getValue()));
+                ClassEntity value = item.getValue();
+                value.setAPTClassName(value.getClassSimpleName()+ SUFFIX);
+                JavaFileUtils.write(mElementResolver, value,JavaGenerate.brewJava(value));
             } catch (Exception e) {
                 mElementResolver.getMessager()
                         .printMessage(Diagnostic.Kind.ERROR, e.getMessage());

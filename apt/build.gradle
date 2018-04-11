@@ -5,7 +5,7 @@ dependencies {
     //    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':annotation')
-        compile project(':aptlib')
+    compile project(':aptlib')
 //        compile 'com.github.luhaoaimama1:AnnotationStudy:1.0.6'
 //    compile files('libs/aptlib.jar')
 }
