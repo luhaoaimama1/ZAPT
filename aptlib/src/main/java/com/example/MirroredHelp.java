@@ -33,5 +33,5 @@ public abstract class MirroredHelp {
         return ele;
     }
 
-    abstract void excepetMothod();
+    public  abstract void excepetMothod();
 }
