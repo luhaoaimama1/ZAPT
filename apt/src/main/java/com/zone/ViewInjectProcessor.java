@@ -1,6 +1,11 @@
-package com.example;
-import com.example.entity.ClassEntity;
+package com.zone;
+import com.zone.apt.JavaFileUtils;
+import com.zone.apt.LogConfig;
+import com.zone.apt.entity.ClassEntity;
 import com.google.auto.service.AutoService;
+import com.zone.apt.AbstractProcessorAPT;
+import com.zone.apt.ElementResolver;
+
 import java.lang.annotation.Annotation;
 import java.util.Map;
 import java.util.Set;
@@ -18,21 +23,35 @@ public class ViewInjectProcessor extends AbstractProcessorAPT {
             ZMethod.class,
             ZClass.class
     };
+
+    static {
+        LogConfig.setFileAddress("/Users/nutstore/AndroidStudioProjects/AnnotationStudy/apt/src/main/java/com/zone/process.txt");
+    }
+
     @Override
     public boolean process(Set<? extends TypeElement> annotations,
                            RoundEnvironment env) {
+
+        mElementResolver.getMessager()
+                .printMessage(Diagnostic.Kind.WARNING, "  写 入  成 功  2：" );
         //解析成实体类
-        for (Class<? extends Annotation> support : supports)
+        for (Class<? extends Annotation> support : supports){
             mElementResolver.resolve(env, support);
+        }
+
         //文件写入
         for (Map.Entry<String, ClassEntity> item : mElementResolver.getClassEntityMap().entrySet()) {
             try {
-                ClassEntity value = item.getValue();
-                value.setAPTClassName(value.getClassSimpleName()+ SUFFIX);
-                JavaFileUtils.write(mElementResolver, value,JavaGenerate.brewJava(value));
+                final ClassEntity value = item.getValue();
+                value.setAPTClassName(value.getClassSimpleName() + SUFFIX);
+                JavaFileUtils.write(mElementResolver, value, new JavaFileUtils.Callback() {
+                    @Override
+                    public String getContent() {
+                        return JavaGenerate.brewJava(value);
+                    }
+                });
             } catch (Exception e) {
-                mElementResolver.getMessager()
-                        .printMessage(Diagnostic.Kind.ERROR, e.getMessage());
+                mElementResolver.getMessager().printMessage(Diagnostic.Kind.ERROR, e.getMessage());
             }
         }
         //log打印；

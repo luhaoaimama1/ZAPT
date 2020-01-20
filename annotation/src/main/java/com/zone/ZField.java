@@ -1,4 +1,4 @@
-package com.example;
+package com.zone;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
  * Created by fuzhipeng on 2016/11/1.
  */
 @Retention(RetentionPolicy.CLASS)
-@Target(ElementType.METHOD)
-public @interface ZMethod {
-    int[] value();
+@Target(ElementType.FIELD)
+public @interface ZField {
+    int value();
 }

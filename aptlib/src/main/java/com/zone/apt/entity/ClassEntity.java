@@ -1,4 +1,4 @@
-package com.example.entity;
+package com.zone.entity;
 
 import java.lang.annotation.Annotation;
 import java.lang.ref.WeakReference;

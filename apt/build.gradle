@@ -1,11 +1,32 @@
-apply plugin: 'java'
-sourceCompatibility = "1.7"
-targetCompatibility = "1.7"
+//apply plugin: 'java'
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
+
+
 dependencies {
-    //    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':annotation')
-    compile project(':aptlib')
-//        compile 'com.github.luhaoaimama1:AnnotationStudy:1.0.6'
-//    compile files('libs/aptlib.jar')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    //auto service
+    implementation project(':aptlib')
+    implementation project(':annotation')
+    implementation 'com.google.auto.service:auto-service:1.0-rc6'
+    kapt 'com.google.auto.service:auto-service:1.0-rc6'
+}
+
+sourceCompatibility = "7"
+targetCompatibility = "7"
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }

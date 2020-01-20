@@ -1,4 +1,4 @@
-package com.example;
+package com.zone;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

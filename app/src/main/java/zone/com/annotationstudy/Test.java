@@ -1,6 +1,6 @@
 package zone.com.annotationstudy;
 
-import com.example.ZClass;
+import com.zone.ZClass;
 
 /**
  * Created by fuzhipeng on 2016/11/1.

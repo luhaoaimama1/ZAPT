@@ -1,4 +1,4 @@
-package com.example;
+package com.zone.apt;
 
 import javax.lang.model.element.Element;
 import javax.lang.model.type.DeclaredType;

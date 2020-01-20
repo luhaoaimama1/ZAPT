@@ -1,8 +1,8 @@
-package com.example;
+package com.zone.apt;
 
-import com.example.entity.ClassEntity;
-import com.example.entity.FieldEntity;
-import com.example.entity.MethodEntity;
+import com.zone.apt.entity.ClassEntity;
+import com.zone.apt.entity.FieldEntity;
+import com.zone.apt.entity.MethodEntity;
 
 import java.lang.annotation.Annotation;
 import java.util.HashMap;
@@ -30,7 +30,7 @@ public class ElementResolver {
     private Types typeUtils;
     private Messager messager;
     private Map<String, ClassEntity> classEntityMap;
-    public static final String GENERATE_LABEL = "$$";
+    public static final String GENERATE_LABEL = "_";
 
 
     public ElementResolver(ProcessingEnvironment env) {
