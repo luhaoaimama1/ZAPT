@@ -1,7 +1,0 @@
-1.MirroredHelp 帮忙解决  解析到的 TypeMirror，它表示我们未编译类
-2.mElementResolver.getMessager().printMessage  打印的在Gradle Console上
-3.JavaFileUtils.write(mElementResolver, item.getValue()
-                        ,SUFFIX2,JavaGenerate.brewAPI(item.getValue(),arr));
-                        写入的类名 需要和String里的类名一致
-
-4.如果还不明白可以参考 https://github.com/luhaoaimama1/RetrofitListHelper

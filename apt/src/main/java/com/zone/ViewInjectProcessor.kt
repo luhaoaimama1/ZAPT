@@ -1,23 +1,17 @@
+package com.zone
 
- ## # JicPack
-Add it in your root build.gradle at the end of repositories:
-```
-allprojects {
-    repositories {
-        ...
-        maven { url "https://jitpack.io" }
-    }
-}
-```
-Step 2. Add the dependency
+import com.zone.apt.JavaFileUtils
+import com.zone.apt.LogConfig
+import com.zone.apt.entity.ClassEntity
+import com.google.auto.service.AutoService
+import com.zone.apt.AbstractProcessorAPT
+import com.zone.apt.ElementResolver
 
-> compile 'com.github.luhaoaimama1:zone-sdk:[Latest release](https://github.com/luhaoaimama1/zone-sdk/releases)'
-
-## 环境配置 参考  module apt
-  
-## 使用
-  
-```java 
+import javax.annotation.processing.Processor
+import javax.annotation.processing.RoundEnvironment
+import javax.annotation.processing.SupportedAnnotationTypes
+import javax.lang.model.element.TypeElement
+import javax.tools.Diagnostic
 
 @AutoService(Processor::class)
 class ViewInjectProcessor : AbstractProcessorAPT() {
@@ -55,15 +49,3 @@ class ViewInjectProcessor : AbstractProcessorAPT() {
         return true
     }
 }
-```
-[wiki](https://github.com/luhaoaimama1/ZAPT/wiki):主要是介绍一些获取属性的方式
-
-# Reference&Thanks：
-
-https://lizhaoxuan.github.io/
-
-http://www.race604.com/annotation-processing/
-
-https://segmentfault.com/a/1190000002785541
-
-http://blog.csdn.net/lmj623565791/article/details/51931859

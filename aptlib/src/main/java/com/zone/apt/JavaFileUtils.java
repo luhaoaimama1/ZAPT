@@ -34,6 +34,6 @@ public class JavaFileUtils {
     }
 
     public interface Callback {
-        public String getContent();
+        String getContent();
     }
 }

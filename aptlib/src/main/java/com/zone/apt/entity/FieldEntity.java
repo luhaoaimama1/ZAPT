@@ -1,4 +1,4 @@
-package com.zone.entity;
+package com.zone.apt.entity;
 
 import java.lang.annotation.Annotation;
 import java.util.ArrayList;

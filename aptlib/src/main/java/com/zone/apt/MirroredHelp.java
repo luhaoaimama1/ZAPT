@@ -19,7 +19,7 @@ public abstract class MirroredHelp {
      * 例如：zone.com.sdk.API.gank.api.GankImpl
      * ele.getSimpleName()
      * 例如：GankImpl
-     * @return
+     * @return   element
      */
     public Element getExcepetElement() {
         DeclaredType value = null;

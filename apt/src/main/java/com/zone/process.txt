@@ -13,42 +13,6 @@ AnnotationKey:com.zone.ZClass	AnnotationValue:@com.zone.ZClass(value=Test____)
 
 }
 
--------------类：zone.com.annotationstudy.MainActivity2----------------
-{
-classPackage:zone.com.annotationstudy
-modifierSet:[public]
-className:zone.com.annotationstudy.MainActivity2
-classSimpleName:MainActivity2
-superclass:androidx.appcompat.app.AppCompatActivity
-FieldKey:bt_processor	FieldValue:
-	{modifierSet:[]
-	type:android.view.View
-	name:bt_processor
-	className:zone.com.annotationstudy.MainActivity2
-	Annotationkey:com.zone.ZField	 Annotation:@com.zone.ZField(value=2131165219)
-}
-FieldKey:bt_annotation	FieldValue:
-	{modifierSet:[public]
-	type:android.view.View
-	name:bt_annotation
-	className:zone.com.annotationstudy.MainActivity2
-	Annotationkey:com.zone.ZField	 Annotation:@com.zone.ZField(value=2131165218)
-}
-
-Methodkey:onClick	MethodValue:
-	{modifierSet:[public]
-	retunType:void
-	methodName:onClick
-	className:zone.com.annotationstudy.MainActivity2
-	Annotationkey:com.zone.ZMethod	AnnotationValue:@com.zone.ZMethod(value=[2131165218, 2131165219])
-	arg:__index:0,type:android.view.View,name:v
-	arg:__index:1,type:int,name:var2
-}
-
-
-
-}
-
 -------------类：zone.com.annotationstudy.MainActivity----------------
 {
 classPackage:zone.com.annotationstudy
@@ -72,17 +36,16 @@ FieldKey:bt_annotation	FieldValue:
 }
 
 Methodkey:onClick	MethodValue:
-	{modifierSet:[public, final]
+	{modifierSet:[public]
 	retunType:void
 	methodName:onClick
 	className:zone.com.annotationstudy.MainActivity
 	Annotationkey:com.zone.ZMethod	AnnotationValue:@com.zone.ZMethod(value=[2131165218, 2131165219])
-	arg:__index:0,type:android.view.View,name:v
-	arg:__index:1,type:int,name:var2
+	arg:__index:0,type:int,name:viewId
 }
 
 
-
+interfaces__index:0:com.zone.ZMethodCallbackTest
 }
 
 -------------类：zone.com.annotationstudy.TestMuplActivity----------------
@@ -109,16 +72,16 @@ FieldKey:bt_annotation	FieldValue:
 
 Methodkey:onClick	MethodValue:
 	{modifierSet:[public]
-	retunType:int
+	retunType:void
 	methodName:onClick
 	className:zone.com.annotationstudy.TestMuplActivity
 	Annotationkey:com.zone.ZMethod	AnnotationValue:@com.zone.ZMethod(value=[2131165218, 2131165219])
-	arg:__index:0,type:android.view.View,name:v
+	arg:__index:0,type:int,name:viewId
 }
 
 AnnotationKey:com.zone.ZClass	AnnotationValue:@com.zone.ZClass(value=MTestMuplActivity____)
 
-interfaces__index:0:zone.com.annotationstudy.Interface1
+interfaces__index:0:zone.com.annotationstudy.Interface1interfaces__index:1:com.zone.ZMethodCallbackTest
 }
 
 
@@ -137,42 +100,6 @@ AnnotationKey:com.zone.ZClass	AnnotationValue:@com.zone.ZClass(value=Test____)
 
 }
 
--------------类：zone.com.annotationstudy.MainActivity2----------------
-{
-classPackage:zone.com.annotationstudy
-modifierSet:[public]
-className:zone.com.annotationstudy.MainActivity2
-classSimpleName:MainActivity2
-superclass:androidx.appcompat.app.AppCompatActivity
-FieldKey:bt_processor	FieldValue:
-	{modifierSet:[]
-	type:android.view.View
-	name:bt_processor
-	className:zone.com.annotationstudy.MainActivity2
-	Annotationkey:com.zone.ZField	 Annotation:@com.zone.ZField(value=2131165219)
-}
-FieldKey:bt_annotation	FieldValue:
-	{modifierSet:[public]
-	type:android.view.View
-	name:bt_annotation
-	className:zone.com.annotationstudy.MainActivity2
-	Annotationkey:com.zone.ZField	 Annotation:@com.zone.ZField(value=2131165218)
-}
-
-Methodkey:onClick	MethodValue:
-	{modifierSet:[public]
-	retunType:void
-	methodName:onClick
-	className:zone.com.annotationstudy.MainActivity2
-	Annotationkey:com.zone.ZMethod	AnnotationValue:@com.zone.ZMethod(value=[2131165218, 2131165219])
-	arg:__index:0,type:android.view.View,name:v
-	arg:__index:1,type:int,name:var2
-}
-
-
-
-}
-
 -------------类：zone.com.annotationstudy.MainActivity----------------
 {
 classPackage:zone.com.annotationstudy
@@ -196,17 +123,16 @@ FieldKey:bt_annotation	FieldValue:
 }
 
 Methodkey:onClick	MethodValue:
-	{modifierSet:[public, final]
+	{modifierSet:[public]
 	retunType:void
 	methodName:onClick
 	className:zone.com.annotationstudy.MainActivity
 	Annotationkey:com.zone.ZMethod	AnnotationValue:@com.zone.ZMethod(value=[2131165218, 2131165219])
-	arg:__index:0,type:android.view.View,name:v
-	arg:__index:1,type:int,name:var2
+	arg:__index:0,type:int,name:viewId
 }
 
 
-
+interfaces__index:0:com.zone.ZMethodCallbackTest
 }
 
 -------------类：zone.com.annotationstudy.TestMuplActivity----------------
@@ -233,16 +159,16 @@ FieldKey:bt_annotation	FieldValue:
 
 Methodkey:onClick	MethodValue:
 	{modifierSet:[public]
-	retunType:int
+	retunType:void
 	methodName:onClick
 	className:zone.com.annotationstudy.TestMuplActivity
 	Annotationkey:com.zone.ZMethod	AnnotationValue:@com.zone.ZMethod(value=[2131165218, 2131165219])
-	arg:__index:0,type:android.view.View,name:v
+	arg:__index:0,type:int,name:viewId
 }
 
 AnnotationKey:com.zone.ZClass	AnnotationValue:@com.zone.ZClass(value=MTestMuplActivity____)
 
-interfaces__index:0:zone.com.annotationstudy.Interface1
+interfaces__index:0:zone.com.annotationstudy.Interface1interfaces__index:1:com.zone.ZMethodCallbackTest
 }
 
 
@@ -261,42 +187,6 @@ AnnotationKey:com.zone.ZClass	AnnotationValue:@com.zone.ZClass(value=Test____)
 
 }
 
--------------类：zone.com.annotationstudy.MainActivity2----------------
-{
-classPackage:zone.com.annotationstudy
-modifierSet:[public]
-className:zone.com.annotationstudy.MainActivity2
-classSimpleName:MainActivity2
-superclass:androidx.appcompat.app.AppCompatActivity
-FieldKey:bt_processor	FieldValue:
-	{modifierSet:[]
-	type:android.view.View
-	name:bt_processor
-	className:zone.com.annotationstudy.MainActivity2
-	Annotationkey:com.zone.ZField	 Annotation:@com.zone.ZField(value=2131165219)
-}
-FieldKey:bt_annotation	FieldValue:
-	{modifierSet:[public]
-	type:android.view.View
-	name:bt_annotation
-	className:zone.com.annotationstudy.MainActivity2
-	Annotationkey:com.zone.ZField	 Annotation:@com.zone.ZField(value=2131165218)
-}
-
-Methodkey:onClick	MethodValue:
-	{modifierSet:[public]
-	retunType:void
-	methodName:onClick
-	className:zone.com.annotationstudy.MainActivity2
-	Annotationkey:com.zone.ZMethod	AnnotationValue:@com.zone.ZMethod(value=[2131165218, 2131165219])
-	arg:__index:0,type:android.view.View,name:v
-	arg:__index:1,type:int,name:var2
-}
-
-
-
-}
-
 -------------类：zone.com.annotationstudy.MainActivity----------------
 {
 classPackage:zone.com.annotationstudy
@@ -320,17 +210,16 @@ FieldKey:bt_annotation	FieldValue:
 }
 
 Methodkey:onClick	MethodValue:
-	{modifierSet:[public, final]
+	{modifierSet:[public]
 	retunType:void
 	methodName:onClick
 	className:zone.com.annotationstudy.MainActivity
 	Annotationkey:com.zone.ZMethod	AnnotationValue:@com.zone.ZMethod(value=[2131165218, 2131165219])
-	arg:__index:0,type:android.view.View,name:v
-	arg:__index:1,type:int,name:var2
+	arg:__index:0,type:int,name:viewId
 }
 
 
-
+interfaces__index:0:com.zone.ZMethodCallbackTest
 }
 
 -------------类：zone.com.annotationstudy.TestMuplActivity----------------
@@ -357,16 +246,16 @@ FieldKey:bt_annotation	FieldValue:
 
 Methodkey:onClick	MethodValue:
 	{modifierSet:[public]
-	retunType:int
+	retunType:void
 	methodName:onClick
 	className:zone.com.annotationstudy.TestMuplActivity
 	Annotationkey:com.zone.ZMethod	AnnotationValue:@com.zone.ZMethod(value=[2131165218, 2131165219])
-	arg:__index:0,type:android.view.View,name:v
+	arg:__index:0,type:int,name:viewId
 }
 
 AnnotationKey:com.zone.ZClass	AnnotationValue:@com.zone.ZClass(value=MTestMuplActivity____)
 
-interfaces__index:0:zone.com.annotationstudy.Interface1
+interfaces__index:0:zone.com.annotationstudy.Interface1interfaces__index:1:com.zone.ZMethodCallbackTest
 }
 
 

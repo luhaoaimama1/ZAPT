@@ -22,7 +22,9 @@ public abstract class AbstractProcessorAPT extends AbstractProcessor {
             types.add(support.getCanonicalName());
         return types;
     }
-    public abstract Class<? extends Annotation>[] getSupportedAnnotationClasses();
+    public  Class<? extends Annotation>[] getSupportedAnnotationClasses(){
+        return new Class[]{};
+    };
 
 
     @Override
