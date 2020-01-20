@@ -11,7 +11,7 @@ allprojects {
 ```
 Step 2. Add the dependency
 
-> compile 'com.github.luhaoaimama1:zone-sdk:[Latest release](https://github.com/luhaoaimama1/zone-sdk/releases)'
+> compile 'com.github.luhaoaimama1:ZAPT:[Latest release](https://github.com/luhaoaimama1/ZAPT/releases)'
 
 ## 环境配置 参考  module apt
   
@@ -56,7 +56,7 @@ class ViewInjectProcessor : AbstractProcessorAPT() {
     }
 }
 ```
-[wiki](https://github.com/luhaoaimama1/ZAPT/wiki):主要是介绍一些获取属性的方式
+
 
 # Reference&Thanks：
 
