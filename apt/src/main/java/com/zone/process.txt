@@ -6,26 +6,123 @@ modifierSet:[public]
 className:zone.com.annotationstudy.WriteSimpleFragment
 classSimpleName:WriteSimpleFragment
 superclass:androidx.fragment.app.Fragment
-FieldKey:pointList	FieldValue:
-	{modifierSet:[]
-	type:java.util.List<android.graphics.Point>
-	name:pointList
-	className:zone.com.annotationstudy.WriteSimpleFragment
-	Annotationkey:com.zone.Argument	 Annotation:@com.zone.Argument(value=[SaveState])
-}
 FieldKey:age	FieldValue:
 	{modifierSet:[]
 	type:int
 	name:age
 	className:zone.com.annotationstudy.WriteSimpleFragment
-	Annotationkey:com.zone.Argument	 Annotation:@com.zone.Argument(value=[Init, SaveState])
+	Annotationkey:com.zone.AutoBundle	 Annotation:@com.zone.AutoBundle(value=[Init, SaveState])
 }
 FieldKey:age2	FieldValue:
 	{modifierSet:[]
 	type:int
 	name:age2
 	className:zone.com.annotationstudy.WriteSimpleFragment
-	Annotationkey:com.zone.Argument	 Annotation:@com.zone.Argument(value=[SaveState])
+	Annotationkey:com.zone.AutoBundle	 Annotation:@com.zone.AutoBundle(value=[SaveState])
+}
+
+
+
+
+}
+
+-------------类：zone.com.annotationstudy.WriteAutoFragment----------------
+{
+classPackage:zone.com.annotationstudy
+modifierSet:[public]
+className:zone.com.annotationstudy.WriteAutoFragment
+classSimpleName:WriteAutoFragment
+superclass:androidx.fragment.app.Fragment
+FieldKey:keyFloat	FieldValue:
+	{modifierSet:[]
+	type:float
+	name:keyFloat
+	className:zone.com.annotationstudy.WriteAutoFragment
+	Annotationkey:com.zone.AutoBundle	 Annotation:@com.zone.AutoBundle(value=[*])
+}
+FieldKey:keyString	FieldValue:
+	{modifierSet:[]
+	type:java.lang.String
+	name:keyString
+	className:zone.com.annotationstudy.WriteAutoFragment
+	Annotationkey:com.zone.AutoBundle	 Annotation:@com.zone.AutoBundle(value=[*])
+}
+FieldKey:keyShort	FieldValue:
+	{modifierSet:[]
+	type:short
+	name:keyShort
+	className:zone.com.annotationstudy.WriteAutoFragment
+	Annotationkey:com.zone.AutoBundle	 Annotation:@com.zone.AutoBundle(value=[*])
+}
+FieldKey:keyInt	FieldValue:
+	{modifierSet:[]
+	type:int
+	name:keyInt
+	className:zone.com.annotationstudy.WriteAutoFragment
+	Annotationkey:com.zone.AutoBundle	 Annotation:@com.zone.AutoBundle(value=[*])
+}
+FieldKey:keyDouble	FieldValue:
+	{modifierSet:[]
+	type:double
+	name:keyDouble
+	className:zone.com.annotationstudy.WriteAutoFragment
+	Annotationkey:com.zone.AutoBundle	 Annotation:@com.zone.AutoBundle(value=[*])
+}
+FieldKey:keyNoSaveState	FieldValue:
+	{modifierSet:[]
+	type:java.util.UUID
+	name:keyNoSaveState
+	className:zone.com.annotationstudy.WriteAutoFragment
+	Annotationkey:com.zone.AutoBundle	 Annotation:@com.zone.AutoBundle(value=[Init])
+}
+FieldKey:pointList	FieldValue:
+	{modifierSet:[]
+	type:java.util.List<android.graphics.Point>
+	name:pointList
+	className:zone.com.annotationstudy.WriteAutoFragment
+	Annotationkey:com.zone.AutoBundle	 Annotation:@com.zone.AutoBundle(value=[*])
+}
+FieldKey:keyParcelable	FieldValue:
+	{modifierSet:[]
+	type:android.graphics.Point
+	name:keyParcelable
+	className:zone.com.annotationstudy.WriteAutoFragment
+	Annotationkey:com.zone.AutoBundle	 Annotation:@com.zone.AutoBundle(value=[*])
+}
+FieldKey:keyByte	FieldValue:
+	{modifierSet:[]
+	type:java.lang.Byte
+	name:keyByte
+	className:zone.com.annotationstudy.WriteAutoFragment
+	Annotationkey:com.zone.AutoBundle	 Annotation:@com.zone.AutoBundle(value=[*])
+}
+FieldKey:keyLong	FieldValue:
+	{modifierSet:[]
+	type:long
+	name:keyLong
+	className:zone.com.annotationstudy.WriteAutoFragment
+	Annotationkey:com.zone.AutoBundle	 Annotation:@com.zone.AutoBundle(value=[*])
+}
+FieldKey:keyBoolean	FieldValue:
+	{modifierSet:[]
+	type:boolean
+	name:keyBoolean
+	className:zone.com.annotationstudy.WriteAutoFragment
+	Annotationkey:com.zone.AutoBundle	 Annotation:@com.zone.AutoBundle(value=[*])
+}
+FieldKey:age	FieldValue:
+	{modifierSet:[]
+	type:int
+	name:age
+	className:zone.com.annotationstudy.WriteAutoFragment
+	Annotationkey:com.zone.AutoBundle	 Annotation:@com.zone.AutoBundle(value=[Init, SaveState])
+}
+FieldKey:keySerializable	FieldValue:
+	{modifierSet:[]
+	type:java.util.UUID
+	name:keySerializable
+	className:zone.com.annotationstudy.WriteAutoFragment
+	Annotationkey:com.zone.AutoBundle	 Annotation:@com.zone.AutoBundle(value=[*])
 }
 
 
@@ -36,7 +133,9 @@ FieldKey:age2	FieldValue:
 
 ---------------process count:2------------------
 重复解析 省略-------------类：zone.com.annotationstudy.WriteSimpleFragment----------------
+重复解析 省略-------------类：zone.com.annotationstudy.WriteAutoFragment----------------
 
 ---------------process count:3------------------
 重复解析 省略-------------类：zone.com.annotationstudy.WriteSimpleFragment----------------
+重复解析 省略-------------类：zone.com.annotationstudy.WriteAutoFragment----------------
 
