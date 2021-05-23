@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
  * Created by fuzhipeng on 2016/11/1.
  */
 @Retention(RetentionPolicy.CLASS)
-@Target(ElementType.TYPE)
-public @interface ZClass {
-    String value();
+@Target(ElementType.FIELD)
+public @interface AutoBundle {
+    String[] value() default {"*"};
 }

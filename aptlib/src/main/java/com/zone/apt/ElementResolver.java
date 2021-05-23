@@ -5,7 +5,9 @@ import com.zone.apt.entity.FieldEntity;
 import com.zone.apt.entity.MethodEntity;
 
 import java.lang.annotation.Annotation;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.annotation.processing.Filer;
 import javax.annotation.processing.Messager;
@@ -30,7 +32,7 @@ public class ElementResolver {
     private Types typeUtils;
     private Messager messager;
     private Map<String, ClassEntity> classEntityMap;
-    public static final String GENERATE_LABEL = "_";
+    public static final String GENERATE_LABEL = "Injector";
 
 
     public ElementResolver(ProcessingEnvironment env) {
@@ -100,15 +102,24 @@ public class ElementResolver {
         }
     }
 
+    private static List<String> generateCache = new ArrayList<>();
     public int count = 1;
     public void  printLog(){
         StringBuilder sb = new StringBuilder();
         for (Map.Entry<String, ClassEntity> classEntity : this.getClassEntityMap().entrySet()) {
-            sb.append("-------------类：" + classEntity.getKey() + "----------------\n");
-            sb.append(classEntity.getValue() + "\n");
-            sb.append("\n");
+            String fullPath = classEntity.getValue().getClassPackage() + "." + classEntity.getValue().getAPTClassName();
+            if (!generateCache.contains(fullPath)) {
+                sb.append("-------------类：" + classEntity.getKey() + "----------------\n");
+                sb.append(classEntity.getValue() + "\n");
+                sb.append("\n");
+                generateCache.add(fullPath);
+            }else{
+                sb.append("重复解析 省略-------------类：" + classEntity.getKey() +  "----------------\n");
+            }
         }
         LogConfig.writeLog(messager,sb.toString(), count);
+
+
         count++;
     }
 

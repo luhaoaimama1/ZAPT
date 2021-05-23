@@ -6,8 +6,8 @@ apply plugin: 'kotlin-kapt'
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     //auto service
-//    implementation project(':aptlib')
-    implementation 'com.github.luhaoaimama1:ZAPT:2.1.0'
+    implementation project(':aptlib')
+//    implementation 'com.github.luhaoaimama1:ZAPT:2.1.0'
     implementation project(':annotation')
     implementation 'com.google.auto.service:auto-service:1.0-rc6'
     kapt 'com.google.auto.service:auto-service:1.0-rc6'
