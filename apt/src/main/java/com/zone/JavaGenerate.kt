@@ -14,25 +14,33 @@ object JavaGenerate {
         sb.appendln("package ${classEntity.classPackage};")
         sb.appendln("import android.os.Bundle;")
         sb.appendln("import android.util.ArrayMap;")
-        sb.appendln("import java.util.ArrayList;")
+        sb.appendln("import java.util.Arrays;")
         sb.appendln("import java.util.HashMap;")
+        sb.appendln("import java.util.List;")
         val blockWriter = BlockWriter(sb)
         codeBlock("public class ${classEntity.aptClassName}", blockWriter) {
             appendln("private  ${classEntity.className}  target;")
-            appendln("private  HashMap<String, ArrayList<String>> tagMap = new HashMap<>();")
+            appendln("private  HashMap<String, List<String>> tagMap = new HashMap<>();")
             //构造器
             codeBlock("private ${classEntity.aptClassName} (${classEntity.className}  target)", blockWriter) {
                 appendln("this.target=target;")
 
                 for ((_, field) in classEntity.fields) {
                     val tags = (field.annotataionMap[AutoBundle::class.java] as AutoBundle).value
-                    val fieldList = "${field.name}List"
-                    appendln("ArrayList<String> $fieldList = new ArrayList<>();")
-                    for (itemTag in tags) {
-                        appendln("$fieldList.add(\"${itemTag}\");")
-
+                    val noCustomTag = tags.size == 1 && "*" == tags[0]
+                    if (!noCustomTag) {
+                        val stringBuilder = StringBuilder()
+                        stringBuilder.append("new String[]{");
+                        tags.forEachIndexed { index, s ->
+                            if (index == 0) {
+                                stringBuilder.append("\"$s\"")
+                            } else {
+                                stringBuilder.append(",\"$s\"")
+                            }
+                        }
+                        stringBuilder.append("}")
+                        appendln("tagMap.put(\"${field.name}\", Arrays.asList($stringBuilder));")
                     }
-                    appendln("tagMap.put(\"${field.name}\", $fieldList);")
                 }
             }
 
@@ -88,8 +96,8 @@ object JavaGenerate {
                     codeBlock("else", blockWriter) {
                         for ((_, field) in classEntity.fields) {
                             val fieldTags = field.name + "Tags"
-                            appendln("ArrayList<String> $fieldTags = tagMap.get(\"${field.name}\");")
-                            codeBlock("if ($fieldTags != null && ($fieldTags.contains(\"*\") || $fieldTags.contains(tag)))", blockWriter) {
+                            appendln("List<String> $fieldTags = tagMap.get(\"${field.name}\");")
+                            codeBlock("if ($fieldTags == null || $fieldTags.contains(\"*\") || $fieldTags.contains(tag))", blockWriter) {
                                 encode(field, bundleHelper, blockWriter)
                             }
                         }
@@ -139,8 +147,8 @@ object JavaGenerate {
                     codeBlock("else", blockWriter) {
                         for ((_, field) in classEntity.fields) {
                             val fieldTags = field.name + "Tags"
-                            appendln("ArrayList<String> $fieldTags = tagMap.get(\"${field.name}\");")
-                            codeBlock("if ($fieldTags != null && ($fieldTags.contains(\"*\") || $fieldTags.contains(tag))) ", blockWriter) {
+                            appendln("List<String> $fieldTags = tagMap.get(\"${field.name}\");")
+                            codeBlock("if ($fieldTags == null ||$fieldTags.contains(\"*\") || $fieldTags.contains(tag)) ", blockWriter) {
                                 decode(field)
                             }
                         }
@@ -173,8 +181,8 @@ object JavaGenerate {
         val isParcelableStyle = field.name+"IsParcelableStyle"
         //过滤出tag的字段解析
         appendln("boolean $isParcelableStyle = $bundleHelper.isParcelableStyle(bundle, \"$name\", this.$name);")
-        codeBlock(" if (! $isParcelableStyle)", blockWriter) {
-            appendln("map.put( \"$name\", this.$name);")
+        codeBlock("if(!$isParcelableStyle)", blockWriter) {
+            appendln("map.put(\"$name\", this.$name);")
         }
     }
 
@@ -217,12 +225,20 @@ object JavaGenerate {
                 "\n" +
                 "public class BundleHelper {\n" +
                 "\n" +
-                "    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)\n" +
+                "    //兼容到android11 \n" +
                 "    public static void putValue(Bundle bundle, ArrayMap map) {\n" +
                 "        try {\n" +
-                "            Method method = BaseBundle.class.getDeclaredMethod(\"putAll\", Map.class);\n" +
-                "            method.setAccessible(true);\n" +
-                "            method.invoke(bundle, map);\n" +
+                "            Method method = null;\n" +
+                "            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {\n" +
+                "                method = BaseBundle.class.getDeclaredMethod(\"putAll\", ArrayMap.class);\n" +
+                "            } else if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {\n" +
+                "                method = BaseBundle.class.getDeclaredMethod(\"putAll\", Map.class);\n" +
+                "            }\n" +
+                "\n" +
+                "            if (method != null) {\n" +
+                "                method.setAccessible(true);\n" +
+                "                method.invoke(bundle, map);\n" +
+                "            }\n" +
                 "        } catch (NoSuchMethodException e) {\n" +
                 "            e.printStackTrace();\n" +
                 "        } catch (IllegalAccessException e) {\n" +

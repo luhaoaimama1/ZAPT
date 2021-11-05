@@ -1,24 +1,51 @@
 ---------------process count:1------------------
--------------类：zone.com.annotationstudy.WriteSimpleFragment----------------
+-------------类：zone.com.annotationstudy.sample.WriteSimpleFragment----------------
 {
-classPackage:zone.com.annotationstudy
+classPackage:zone.com.annotationstudy.sample
 modifierSet:[public]
-className:zone.com.annotationstudy.WriteSimpleFragment
+className:zone.com.annotationstudy.sample.WriteSimpleFragment
 classSimpleName:WriteSimpleFragment
 superclass:androidx.fragment.app.Fragment
 FieldKey:age	FieldValue:
 	{modifierSet:[]
 	type:int
 	name:age
-	className:zone.com.annotationstudy.WriteSimpleFragment
+	className:zone.com.annotationstudy.sample.WriteSimpleFragment
 	Annotationkey:com.zone.AutoBundle	 Annotation:@com.zone.AutoBundle(value=[Init, SaveState])
 }
 FieldKey:age2	FieldValue:
 	{modifierSet:[]
 	type:int
 	name:age2
-	className:zone.com.annotationstudy.WriteSimpleFragment
+	className:zone.com.annotationstudy.sample.WriteSimpleFragment
 	Annotationkey:com.zone.AutoBundle	 Annotation:@com.zone.AutoBundle(value=[SaveState])
+}
+
+
+
+
+}
+
+-------------类：zone.com.annotationstudy.WriteAutoParentFragment----------------
+{
+classPackage:zone.com.annotationstudy
+modifierSet:[public]
+className:zone.com.annotationstudy.WriteAutoParentFragment
+classSimpleName:WriteAutoParentFragment
+superclass:androidx.fragment.app.Fragment
+FieldKey:keyBooleanParent	FieldValue:
+	{modifierSet:[]
+	type:boolean
+	name:keyBooleanParent
+	className:zone.com.annotationstudy.WriteAutoParentFragment
+	Annotationkey:com.zone.AutoBundle	 Annotation:@com.zone.AutoBundle(value=[*])
+}
+FieldKey:pointListParent	FieldValue:
+	{modifierSet:[]
+	type:java.util.List<android.graphics.Point>
+	name:pointListParent
+	className:zone.com.annotationstudy.WriteAutoParentFragment
+	Annotationkey:com.zone.AutoBundle	 Annotation:@com.zone.AutoBundle(value=[*])
 }
 
 
@@ -32,7 +59,7 @@ classPackage:zone.com.annotationstudy
 modifierSet:[public]
 className:zone.com.annotationstudy.WriteAutoFragment
 classSimpleName:WriteAutoFragment
-superclass:androidx.fragment.app.Fragment
+superclass:zone.com.annotationstudy.WriteAutoParentFragment
 FieldKey:keyFloat	FieldValue:
 	{modifierSet:[]
 	type:float
@@ -132,10 +159,12 @@ FieldKey:keySerializable	FieldValue:
 
 
 ---------------process count:2------------------
-重复解析 省略-------------类：zone.com.annotationstudy.WriteSimpleFragment----------------
+重复解析 省略-------------类：zone.com.annotationstudy.sample.WriteSimpleFragment----------------
+重复解析 省略-------------类：zone.com.annotationstudy.WriteAutoParentFragment----------------
 重复解析 省略-------------类：zone.com.annotationstudy.WriteAutoFragment----------------
 
 ---------------process count:3------------------
-重复解析 省略-------------类：zone.com.annotationstudy.WriteSimpleFragment----------------
+重复解析 省略-------------类：zone.com.annotationstudy.sample.WriteSimpleFragment----------------
+重复解析 省略-------------类：zone.com.annotationstudy.WriteAutoParentFragment----------------
 重复解析 省略-------------类：zone.com.annotationstudy.WriteAutoFragment----------------
 
