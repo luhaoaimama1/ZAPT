@@ -1,4 +1,4 @@
-package zone.com.annotationstudy;
+package zone.com.annotationstudy.sample;
 
 import android.content.Context;
 import android.graphics.Point;

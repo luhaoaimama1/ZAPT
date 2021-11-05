@@ -1,4 +1,4 @@
-package zone.com.annotationstudy;
+package zone.com.annotationstudy.sample;
 
 import android.os.BaseBundle;
 import android.os.Build;
@@ -14,11 +14,20 @@ import java.util.Map;
 
 public class BundleHelper {
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public static void putValue(Bundle bundle, ArrayMap map) {
+        //兼容到android11
         try {
-            Method method = BaseBundle.class.getDeclaredMethod("putAll", Map.class);
-            method.invoke(bundle, map);
+            Method method = null;
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                method = BaseBundle.class.getDeclaredMethod("putAll", ArrayMap.class);
+            } else if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                method = BaseBundle.class.getDeclaredMethod("putAll", Map.class);
+            }
+
+            if (method != null) {
+                method.setAccessible(true);
+                method.invoke(bundle, map);
+            }
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {

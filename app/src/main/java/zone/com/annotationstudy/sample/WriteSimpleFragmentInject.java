@@ -1,13 +1,14 @@
-package zone.com.annotationstudy;
+package zone.com.annotationstudy.sample;
 
 import android.annotation.SuppressLint;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.util.ArrayMap;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * 1. 存传入的值。 取传入的值
@@ -42,18 +43,16 @@ import java.util.HashMap;
  * 那么建立fragment的endcode/decode 要传入"create"
  * 而onSave则 要传入"saveSate"
  * <p>
- * 如果不传入的话，则都编解码
+ * 如果不传入的话，则都编解码decode
  */
 public class WriteSimpleFragmentInject {
     WriteSimpleFragment target;
 
-    HashMap<String, ArrayList<String>> tagMap = new HashMap<>();
+    HashMap<String, List<String>> tagMap = new HashMap<>();
 
     private WriteSimpleFragmentInject(WriteSimpleFragment target) {
         this.target = target;
-        ArrayList<String> list = new ArrayList<>();
-        list.add("");
-        tagMap.put("age", list);
+        tagMap.put("age", Arrays.asList(new String[]{"*", "a"}));
     }
 
     public static EncodeBuilder autoEncode(WriteSimpleFragment target, Bundle bundle) {
@@ -71,7 +70,10 @@ public class WriteSimpleFragmentInject {
 
     public static DecodeBuilder decode(WriteSimpleFragment target, Bundle bundle) {
         WriteSimpleFragmentInject obj = new WriteSimpleFragmentInject(target);
-        return obj.new DecodeBuilder(bundle);
+        DecodeBuilder decodeBuilder = obj.new DecodeBuilder(bundle);
+        //因为每次解码 都是
+        decodeBuilder.ageDefault(target.age);//
+        return decodeBuilder;
     }
 
 
@@ -143,8 +145,8 @@ public class WriteSimpleFragmentInject {
                 //解析全部
             } else {
                 //过滤出tag的字段解析
-                ArrayList<String> ages = tagMap.get("age");
-                if (ages != null && ages.contains("*") || ages.contains("tag")) {
+                List<String> ages = tagMap.get("age");
+                if (ages == null || ages.contains("*") || ages.contains("tag")) {
                     Object age = bundle.get("age");
                     target.age = age == null ? (int) age : ageDefault;
                 }
