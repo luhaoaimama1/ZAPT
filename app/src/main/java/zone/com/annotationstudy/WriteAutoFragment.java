@@ -4,26 +4,19 @@ import android.content.Context;
 import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LifecycleObserver;
-
 import com.zone.AutoBundle;
-
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observer;
 import java.util.UUID;
 
 /**
@@ -33,11 +26,21 @@ import java.util.UUID;
  * ======> .keyDefaults()  把当前的值自动都设置成默认值
  * .resolve();
  *
- * 2.需要每次都new WriteAutoParentFragmentAutoBundleInjector() 在用这个引用去使用
+ * over~
+ * 继承 带改良。
+ *
+ * 不能用继承 原因是 target onSaveInstanceState 继承关系只会走一次。
+ * 但是子会调用 autoBundleInjector.decode 父也会autoBundleInjector.decode
+ * 这样如果继承的话 父就会触发两次。分离更好一点。对于view也挺好就是fragment传入的时候比较麻烦
+ *
+ * 但是不用继承这个麻烦的事情如何解决。父属性符合设置？
+ *
+ * 如果用继承。对应的属性不去管理。又如何呢？好纠结
+ *
+ *
+ * 需要每次都new WriteAutoParentFragmentAutoBundleInjector() 在用这个引用去使用
  * 考虑javassit 动态代理  weakhashmap 反射设置属性用委托处理 使原来的好使、实现接口 自己实现set/get。
  * 但是最后还是打算自己构造  因为这个是不仅仅是fragment用 也可以用view 也可以用于任何bundle的地方。
- *
- * 3.继承 带改良。
  */
 public class WriteAutoFragment extends WriteAutoParentFragment {
 
@@ -84,6 +87,7 @@ public class WriteAutoFragment extends WriteAutoParentFragment {
 
     @AutoBundle({INIT})
     UUID keyNoSaveState;
+    private final WriteAutoFragmentAutoBundleInjector autoBundleInjector = new WriteAutoFragmentAutoBundleInjector(this);
 
     public static WriteAutoFragment newInstance(int age) {
         Log.d("WriteAutoFragment","newInstance");
@@ -92,7 +96,8 @@ public class WriteAutoFragment extends WriteAutoParentFragment {
         Point point = new Point(100, 50);
         ArrayList<Point> objects = new ArrayList<>();
         objects.add(point);
-        WriteAutoFragmentAutoBundleInjector.handleEncode(fragment, args)
+
+        fragment.autoBundleInjector.handleEncode(args)
                 .age(age)
                 .pointList(objects)
                 .keyBoolean(true)
@@ -107,18 +112,26 @@ public class WriteAutoFragment extends WriteAutoParentFragment {
                 .keyByte("car".getBytes()[0])
                 .keyParcelable(new Point(1000, 1000))
                 .save();
+
+        //继承关系的处理
+        fragment.getWriteAutoParentFragmentAutoBundleInjector().handleEncode(args)
+                .keyBooleanParent(true)
+                .keyParentString("父string")
+                .save();
+
         fragment.setArguments(args);
         return fragment;
     }
+
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         Log.d("WriteAutoFragment","onAttach");
-        WriteAutoFragmentAutoBundleInjector.decode(this, getArguments())
+        autoBundleInjector.decode(getArguments())
 //                .keyDefaults()
                 .resolve();
-        if (getArguments() != null) getArguments().clear();
+//        if (getArguments() != null) getArguments().clear();
     }
 
     @Override
@@ -147,22 +160,29 @@ public class WriteAutoFragment extends WriteAutoParentFragment {
         Log.d("WriteAutoFragment","onStart");
         if (textView != null) {
             StringBuffer sb = new StringBuffer();
-            Field[] fields = WriteAutoFragment.class.getDeclaredFields();
-            for (int i = 0; i < fields.length; i++) {
-                try {
-                    fields[i].setAccessible(true);
-                    if (fields[i].get(this) != null) {
-                        sb.append(fields[i].getName() + ":" + fields[i].get(this).toString() + "\n");
-                    } else {
-                        sb.append(fields[i].getName() + ": >>无<<\n");
-                    }
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-            }
+            sb.append("Fragment:" + this + "\n");
+            getClassFields(sb, WriteAutoFragment.class);
+            sb.append("=====父属性========\n");
+            getClassFields(sb, WriteAutoParentFragment.class);
             textView.setText(sb.toString());
         }
 
+    }
+
+    private void getClassFields(StringBuffer sb, Class writeAutoFragmentClass) {
+        Field[] fields = writeAutoFragmentClass.getDeclaredFields();
+        for (int i = 0; i < fields.length; i++) {
+            try {
+                fields[i].setAccessible(true);
+                if (fields[i].get(this) != null) {
+                    sb.append(fields[i].getName() + ":" + fields[i].get(this).toString() + "\n");
+                } else {
+                    sb.append(fields[i].getName() + ": >>无<<\n");
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -187,7 +207,7 @@ public class WriteAutoFragment extends WriteAutoParentFragment {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         Log.d("WriteAutoFragment","onSaveInstanceState");
-        WriteAutoFragmentAutoBundleInjector.autoEncode(this, outState)
+        autoBundleInjector.autoEncode(outState)
                 .tag(SAVE_STATE)
                 .save();
     }
@@ -196,7 +216,7 @@ public class WriteAutoFragment extends WriteAutoParentFragment {
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
         Log.d("WriteAutoFragment","onViewStateRestored");
-        WriteAutoFragmentAutoBundleInjector.decode(this, savedInstanceState)
+        autoBundleInjector.decode(savedInstanceState)
                 .tag(SAVE_STATE)
                 .resolve();
     }

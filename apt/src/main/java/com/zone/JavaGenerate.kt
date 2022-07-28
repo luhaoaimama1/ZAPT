@@ -22,7 +22,7 @@ object JavaGenerate {
             appendln("private  ${classEntity.className}  target;")
             appendln("private  HashMap<String, List<String>> tagMap = new HashMap<>();")
             //构造器
-            codeBlock("private ${classEntity.aptClassName} (${classEntity.className}  target)", blockWriter) {
+            codeBlock("public ${classEntity.aptClassName} (${classEntity.className}  target)", blockWriter) {
                 appendln("this.target=target;")
 
                 for ((_, field) in classEntity.fields) {
@@ -45,22 +45,19 @@ object JavaGenerate {
             }
 
             //静态编码
-            codeBlock("public static EncodeBuilder handleEncode(${classEntity.className} target, Bundle bundle)", blockWriter) {
-                appendln("${classEntity.aptClassName} obj = new  ${classEntity.aptClassName}(target);")
-                appendln("return obj.new EncodeBuilder(bundle);")
+            codeBlock("public EncodeBuilder handleEncode(Bundle bundle)", blockWriter) {
+                appendln("return new EncodeBuilder(bundle);")
             }
 
             //静态解码
-            codeBlock("public static DecodeBuilder decode(${classEntity.className} target, Bundle bundle)", blockWriter) {
-                appendln("${classEntity.aptClassName} obj = new ${classEntity.aptClassName}(target);")
-                appendln("EncodeBuilder encodeBuilder = obj.new EncodeBuilder(bundle);")
-                appendln("return obj.new DecodeBuilder(bundle);")
+            codeBlock("public DecodeBuilder decode(Bundle bundle)", blockWriter) {
+//                appendln("EncodeBuilder encodeBuilder = new EncodeBuilder(bundle);")
+                appendln("return new DecodeBuilder(bundle);")
             }
 
             //静态编码 自动注入
-            codeBlock("public static EncodeBuilder autoEncode(${classEntity.className} target, Bundle bundle)", blockWriter) {
-                appendln(" ${classEntity.aptClassName} obj = new  ${classEntity.aptClassName}(target);")
-                appendln("EncodeBuilder encodeBuilder = obj.new EncodeBuilder(bundle);")
+            codeBlock("public EncodeBuilder autoEncode(Bundle bundle)", blockWriter) {
+                appendln("EncodeBuilder encodeBuilder = new EncodeBuilder(bundle);")
                 for ((_, field) in classEntity.fields) {
                     appendln("encodeBuilder.${field.name}(target.${field.name});//根据当前值自动设置")
                 }

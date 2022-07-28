@@ -33,17 +33,17 @@ modifierSet:[public]
 className:zone.com.annotationstudy.WriteAutoParentFragment
 classSimpleName:WriteAutoParentFragment
 superclass:androidx.fragment.app.Fragment
-FieldKey:keyBooleanParent	FieldValue:
+FieldKey:keyParentString	FieldValue:
 	{modifierSet:[]
-	type:boolean
-	name:keyBooleanParent
+	type:java.lang.String
+	name:keyParentString
 	className:zone.com.annotationstudy.WriteAutoParentFragment
 	Annotationkey:com.zone.AutoBundle	 Annotation:@com.zone.AutoBundle(value=[*])
 }
-FieldKey:pointListParent	FieldValue:
-	{modifierSet:[]
-	type:java.util.List<android.graphics.Point>
-	name:pointListParent
+FieldKey:keyBooleanParent	FieldValue:
+	{modifierSet:[public]
+	type:boolean
+	name:keyBooleanParent
 	className:zone.com.annotationstudy.WriteAutoParentFragment
 	Annotationkey:com.zone.AutoBundle	 Annotation:@com.zone.AutoBundle(value=[*])
 }
