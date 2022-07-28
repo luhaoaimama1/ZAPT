@@ -1,21 +1,8 @@
 
- ## # JicPack
-Add it in your root build.gradle at the end of repositories:
-```
-allprojects {
-    repositories {
-        ...
-        maven { url "https://jitpack.io" }
-    }
-}
-```
-Step 2. Add the dependency
+## first
+down aptlib for you
 
-> compile 'com.github.luhaoaimama1:ZAPT:[Latest release](https://github.com/luhaoaimama1/ZAPT/releases)'
-
-## 环境配置 参考  module apt
-  
-## 使用
+## use
   
 ```java 
 
@@ -56,6 +43,8 @@ class ViewInjectProcessor : AbstractProcessorAPT() {
     }
 }
 ```
+
+## this example is AutoBundle annotation
 
 
 # Reference&Thanks：
