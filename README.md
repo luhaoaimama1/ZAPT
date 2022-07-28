@@ -46,6 +46,59 @@ class ViewInjectProcessor : AbstractProcessorAPT() {
 
 ## this example is AutoBundle annotation
 
+```java
+public class WriteAutoFragment extends WriteAutoParentFragment {
+    @AutoBundle
+    int age;
+    @AutoBundle
+    List<Point> pointList;
+    @AutoBundle
+    boolean keyBoolean;
+    @AutoBundle
+    String keyString;
+    public static WriteAutoFragment newInstance(int age) {
+            Log.d("WriteAutoFragment","newInstance");
+            Bundle args = new Bundle();
+            WriteAutoFragment fragment = new WriteAutoFragment();
+            Point point = new Point(100, 50);
+            ArrayList<Point> objects = new ArrayList<>();
+            objects.add(point);
+            fragment.autoBundleInjector.handleEncode(args)
+                    .age(age)
+                    .pointList(objects)
+                    .keyBoolean(true)
+                    .keyString("string~")
+                    .save();
+            fragment.setArguments(args);
+            return fragment;
+        }
+       @Override
+       public void onAttach(Context context) {
+           super.onAttach(context);
+           Log.d("WriteAutoFragment","onAttach");
+           autoBundleInjector.decode(getArguments())
+                  .resolve();
+       }
+
+       @Override
+       public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+           super.onViewStateRestored(savedInstanceState);
+           Log.d("WriteAutoFragment","onViewStateRestored");
+           autoBundleInjector.decode(savedInstanceState)
+                   .resolve();
+       }
+
+       @Override
+       public void onSaveInstanceState(@NonNull Bundle outState) {
+           super.onSaveInstanceState(outState);
+           Log.d("WriteAutoFragment","onSaveInstanceState");
+           autoBundleInjector.autoEncode(outState)
+                   .save();
+       }
+
+}
+```
+
 
 # Reference&Thanks：
 
